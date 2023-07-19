@@ -1,0 +1,49 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package proto;
+option go_package = "./pkg/proto";
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (User) {}
+  rpc UpdatePassword(UpdatePasswordRequest) returns (User) {}
+  rpc GetUserByID(GetByIDRequest) returns (User) {}
+  rpc GetUsersByUsername(GetByUsernameRequest) returns (UserArray) {}
+  rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty) {}
+}
+
+message User {
+  int64 id = 1;
+  string username = 2;
+  string password = 3;
+}
+
+message CreateUserRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message UpdatePasswordRequest {
+  int64 id = 1;
+  string oldPassword = 2;
+  string newPassword = 3;
+}
+
+message GetByIDRequest {
+  int64 id = 1;
+}
+
+message GetByUsernameRequest {
+  string username = 1;
+  int64 limit = 2;
+  int64 offset = 3;
+}
+
+message UserArray {
+  repeated User users = 1;
+  int64 count = 2;
+}
+
+message DeleteUserRequest {
+  int64 id = 1;
+}
