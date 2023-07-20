@@ -6,4 +6,5 @@ var errGrpcCodeMap = map[ErrCode]codes.Code{
 	ErrCodeNotFound:        codes.NotFound,
 	ErrCodeUnknown:         codes.Unknown,
 	ErrCodeInvalidArgument: codes.InvalidArgument,
+	ErrCodeAlreadyExist:    codes.AlreadyExists,
 }

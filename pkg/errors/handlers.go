@@ -16,6 +16,10 @@ func HandleGrpcError(err error) error {
 
 func HandleServiceError(err error) error {
 	switch err {
+	case ErrUserNotFound:
+		return NewError(ErrUserNotFound.Error(), ErrCodeNotFound)
+	case ErrUserAlreadyExist:
+		return NewError(ErrUserAlreadyExist.Error(), ErrCodeAlreadyExist)
 	case ErrValidationError:
 		return NewError(ErrValidationError.Error(), ErrCodeInvalidArgument)
 	default:

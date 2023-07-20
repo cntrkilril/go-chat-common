@@ -15,6 +15,7 @@ const (
 	ErrCodeUnknown
 	ErrCodeNotFound
 	ErrCodeInvalidArgument
+	ErrCodeAlreadyExist
 )
 
 func (e *Error) Error() string {
@@ -32,6 +33,8 @@ func NewError(msg string, code ErrCode) *Error {
 }
 
 var (
-	ErrUnknown         = errors.New("что-то пошло не так")
-	ErrValidationError = errors.New("невалидные данные")
+	ErrUnknown          = errors.New("что-то пошло не так")
+	ErrValidationError  = errors.New("невалидные данные")
+	ErrUserNotFound     = errors.New("пользователь не найден")
+	ErrUserAlreadyExist = errors.New("пользователь уже существует")
 )
