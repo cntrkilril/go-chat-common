@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/golang-migrate/migrate/v4"
-	"github.com/gookit/slog"
+	"go.uber.org/zap"
 	"time"
 
 	"github.com/golang-migrate/migrate/v4/database/postgres"
@@ -33,7 +33,7 @@ type (
 	}
 )
 
-func InitPsqlDB(cfg Config, l *slog.SugaredLogger) (*sqlx.DB, error) {
+func InitPsqlDB(cfg Config, l *zap.SugaredLogger) (*sqlx.DB, error) {
 	db, err := sqlx.Connect("pgx", cfg.Postgres.ConnString)
 	if err != nil {
 		l.Error(err)
@@ -78,7 +78,7 @@ func InitPsqlDB(cfg Config, l *slog.SugaredLogger) (*sqlx.DB, error) {
 	return db, nil
 }
 
-func DeferClose(db *sqlx.DB, l *slog.SugaredLogger) {
+func DeferClose(db *sqlx.DB, l *zap.SugaredLogger) {
 	defer func(db *sqlx.DB) {
 		err := db.Close()
 		if err != nil {
