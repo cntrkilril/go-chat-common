@@ -2,6 +2,7 @@ module github.com/cntrkilril/go-chat-common
 
 go 1.20
 
+
 require (
 	github.com/golang-migrate/migrate/v4 v4.16.2
 	github.com/gookit/slog v0.5.3
