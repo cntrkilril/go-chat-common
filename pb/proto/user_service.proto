@@ -2,7 +2,7 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 
 package proto;
-option go_package = "./pkg/proto";
+option go_package = "./user_service";
 
 service UserService {
   rpc CreateUser(CreateUserRequest) returns (User) {}
