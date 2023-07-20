@@ -33,8 +33,10 @@ func NewError(msg string, code ErrCode) *Error {
 }
 
 var (
-	ErrUnknown          = errors.New("что-то пошло не так")
-	ErrValidationError  = errors.New("невалидные данные")
-	ErrUserNotFound     = errors.New("пользователь не найден")
-	ErrUserAlreadyExist = errors.New("пользователь уже существует")
+	ErrUnknown             = errors.New("что-то пошло не так")
+	ErrValidationError     = errors.New("невалидные данные")
+	ErrUserNotFound        = errors.New("пользователь не найден")
+	ErrUserAlreadyExist    = errors.New("пользователь уже существует")
+	ErrSessionNotFound     = errors.New("сессия не найдена")
+	ErrSessionAlreadyExist = errors.New("сессия уже существует")
 )

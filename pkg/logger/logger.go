@@ -12,7 +12,7 @@ type (
 	}
 
 	Logger struct {
-		Level int8 `koanf:"level" validate:"required"`
+		Level int8 `validate:"required"`
 	}
 )
 

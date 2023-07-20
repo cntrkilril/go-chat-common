@@ -20,6 +20,10 @@ func HandleServiceError(err error) error {
 		return NewError(ErrUserNotFound.Error(), ErrCodeNotFound)
 	case ErrUserAlreadyExist:
 		return NewError(ErrUserAlreadyExist.Error(), ErrCodeAlreadyExist)
+	case ErrSessionNotFound:
+		return NewError(ErrSessionNotFound.Error(), ErrCodeNotFound)
+	case ErrSessionAlreadyExist:
+		return NewError(ErrSessionAlreadyExist.Error(), ErrCodeAlreadyExist)
 	case ErrValidationError:
 		return NewError(ErrValidationError.Error(), ErrCodeInvalidArgument)
 	default:
