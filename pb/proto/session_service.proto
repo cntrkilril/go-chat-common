@@ -6,7 +6,7 @@ option go_package = "./session_service";
 
 service SessionService {
   rpc CreateSession(CreateSessionRequest) returns (Session) {}
-  rpc DeleteSession(DeleteSessionRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteSession(Session) returns (google.protobuf.Empty) {}
   rpc GetSessionByToken(GetSessionByTokenRequest) returns (Session) {}
 }
 
@@ -17,10 +17,6 @@ message Session {
 
 message CreateSessionRequest {
   int64 id = 1;
-}
-
-message DeleteSessionRequest {
-  string token = 1;
 }
 
 message GetSessionByTokenRequest {
