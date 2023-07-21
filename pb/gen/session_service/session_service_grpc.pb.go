@@ -30,7 +30,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SessionServiceClient interface {
 	CreateSession(ctx context.Context, in *CreateSessionRequest, opts ...grpc.CallOption) (*Session, error)
-	DeleteSession(ctx context.Context, in *DeleteSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteSession(ctx context.Context, in *Session, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetSessionByToken(ctx context.Context, in *GetSessionByTokenRequest, opts ...grpc.CallOption) (*Session, error)
 }
 
@@ -51,7 +51,7 @@ func (c *sessionServiceClient) CreateSession(ctx context.Context, in *CreateSess
 	return out, nil
 }
 
-func (c *sessionServiceClient) DeleteSession(ctx context.Context, in *DeleteSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *sessionServiceClient) DeleteSession(ctx context.Context, in *Session, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, SessionService_DeleteSession_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -74,7 +74,7 @@ func (c *sessionServiceClient) GetSessionByToken(ctx context.Context, in *GetSes
 // for forward compatibility
 type SessionServiceServer interface {
 	CreateSession(context.Context, *CreateSessionRequest) (*Session, error)
-	DeleteSession(context.Context, *DeleteSessionRequest) (*emptypb.Empty, error)
+	DeleteSession(context.Context, *Session) (*emptypb.Empty, error)
 	GetSessionByToken(context.Context, *GetSessionByTokenRequest) (*Session, error)
 	mustEmbedUnimplementedSessionServiceServer()
 }
@@ -86,7 +86,7 @@ type UnimplementedSessionServiceServer struct {
 func (UnimplementedSessionServiceServer) CreateSession(context.Context, *CreateSessionRequest) (*Session, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSession not implemented")
 }
-func (UnimplementedSessionServiceServer) DeleteSession(context.Context, *DeleteSessionRequest) (*emptypb.Empty, error) {
+func (UnimplementedSessionServiceServer) DeleteSession(context.Context, *Session) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteSession not implemented")
 }
 func (UnimplementedSessionServiceServer) GetSessionByToken(context.Context, *GetSessionByTokenRequest) (*Session, error) {
@@ -124,7 +124,7 @@ func _SessionService_CreateSession_Handler(srv interface{}, ctx context.Context,
 }
 
 func _SessionService_DeleteSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteSessionRequest)
+	in := new(Session)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func _SessionService_DeleteSession_Handler(srv interface{}, ctx context.Context,
 		FullMethod: SessionService_DeleteSession_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionServiceServer).DeleteSession(ctx, req.(*DeleteSessionRequest))
+		return srv.(SessionServiceServer).DeleteSession(ctx, req.(*Session))
 	}
 	return interceptor(ctx, in, info, handler)
 }
